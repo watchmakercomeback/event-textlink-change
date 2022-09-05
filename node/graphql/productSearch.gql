@@ -1,0 +1,6 @@
+query product($value: String){
+  product(identifier:{field: id, value: $value}) @context(provider: "vtex.search-graphql") {
+    id
+    linkId
+  }
+}

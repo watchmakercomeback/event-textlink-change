@@ -1,0 +1,33 @@
+{
+  "memory": 128,
+  "ttl": 10,
+  "timeout": 2,
+  "minReplicas": 2,
+  "maxReplicas": 10,
+  "workers": 4,
+  "events": {
+    "skuChange": {
+      "keys": [
+        "broadcaster.notification"
+      ]
+    },
+    "productUpdate": {
+      "sender": "vtex.broadcaster",
+      "keys": [
+        "broadcaster.notification"
+      ]
+    },
+    "broadcasterCatalog": {
+      "sender": "vtex.broadcaster-worker",
+      "keys": [
+        "broadcaster.product"
+      ]
+    }
+  },
+  "routes": {
+    "hcheck": {
+      "path": "/_v/app/events-example/hcheck",
+      "public": true
+    }
+  }
+}

@@ -5,9 +5,6 @@
   "title": "Events Example",
   "description": "Reference app for VTEX IO Services",
   "dependencies": {
-    "vtex.store-graphql": "2.x",
-    "vtex.search-graphql": "0.x",
-    "vtex.search-resolver": "0.x",
     "vtex.catalog-graphql": "1.x"
   },
   "builders": {
@@ -19,6 +16,13 @@
   },
   "credentialType": "absolute",
   "policies": [
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/catalog/pvt/*"
+      }
+    },
     {
       "name": "colossus-fire-event"
     },

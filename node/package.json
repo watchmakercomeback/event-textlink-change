@@ -8,7 +8,8 @@
     "@vtex/api": "6.45.12",
     "@vtex/tsconfig": "^0.5.6",
     "apollo-client": "^2.4.7",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "vtex.catalog-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.catalog-graphql@1.101.1/public/@types/vtex.catalog-graphql"
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty && eslint -c .eslintrc.json --fix './**/*.ts'"

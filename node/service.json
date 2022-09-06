@@ -10,24 +10,6 @@
       "keys": [
         "broadcaster.notification"
       ]
-    },
-    "productUpdate": {
-      "sender": "vtex.broadcaster",
-      "keys": [
-        "broadcaster.notification"
-      ]
-    },
-    "broadcasterCatalog": {
-      "sender": "vtex.broadcaster-worker",
-      "keys": [
-        "broadcaster.product"
-      ]
-    }
-  },
-  "routes": {
-    "hcheck": {
-      "path": "/_v/app/events-example/hcheck",
-      "public": true
     }
   }
 }

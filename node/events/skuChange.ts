@@ -1,9 +1,47 @@
-import type { EventContext, IOClients } from '@vtex/api'
+import type { EventContext } from '@vtex/api'
 
-export async function skuChange(ctx: EventContext<IOClients>) {
-  const responseSku = ctx.body.IdSku
+import type { Clients } from '../clients'
+import {
+  haveSpecialCharaters,
+  getLinkWithOutSpecialCharacters,
+} from '../utils/catalog'
 
-  console.log('RECEIVED EVENT', ctx.body)
+export async function skuChange(ctx: EventContext<Clients>) {
+  try {
+    const { clients } = ctx
 
-  return responseSku
+    const { HasStockKeepingUnitModified, IdSku } = ctx.body
+
+    if (HasStockKeepingUnitModified) {
+      const { ProductId } = await clients.catalog.getSku(IdSku)
+
+      // eslint-disable-next-line no-console
+      console.log('Product id:', ProductId)
+
+      const { LinkId } = await clients.catalog.getProduct(ProductId)
+
+      // eslint-disable-next-line no-console
+      console.log('Link Id:', LinkId)
+
+      // eslint-disable-next-line no-console
+      console.log('haveSpecialCharaters', haveSpecialCharaters(LinkId))
+
+      if (haveSpecialCharaters(LinkId)) {
+        const newLink = getLinkWithOutSpecialCharacters(LinkId)
+
+        // eslint-disable-next-line no-console
+        console.log('newLink', newLink)
+
+        const newProduct = clients.catalog.updateProductLink(ProductId, newLink)
+
+        return newProduct
+      }
+    }
+
+    return {}
+  } catch (error) {
+    console.error(error)
+
+    return {}
+  }
 }

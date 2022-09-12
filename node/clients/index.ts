@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IOClients } from '@vtex/api'
 
 import CatalogClient from './catalog'

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import type { ServiceContext, ClientsConfig } from '@vtex/api'
 import { Service } from '@vtex/api'
 

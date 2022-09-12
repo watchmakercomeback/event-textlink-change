@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import type { EventContext } from '@vtex/api'
 
 import type { Clients } from '../clients'
@@ -18,7 +19,7 @@ export async function skuChange(ctx: EventContext<Clients>) {
       // eslint-disable-next-line no-console
       console.log('Product id:', ProductId)
 
-      const { LinkId } = await clients.catalog.getProduct(ProductId)
+      const { LinkId, Name, CategoryId, BrandId } = await clients.catalog.getProduct(ProductId)
 
       // eslint-disable-next-line no-console
       console.log('Link Id:', LinkId)
@@ -32,7 +33,7 @@ export async function skuChange(ctx: EventContext<Clients>) {
         // eslint-disable-next-line no-console
         console.log('newLink', newLink)
 
-        const newProduct = clients.catalog.updateProductLink(ProductId, newLink)
+        const newProduct = clients.catalog.updateProductLink(ProductId, newLink, { Name, CategoryId, BrandId })
 
         return newProduct
       }
